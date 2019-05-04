@@ -16,13 +16,13 @@ public class Client {
 		/*
 		 * Answer 1 : Gathered data for year 2017 and 2016
 		 */
-		 Client.tossField();
+		 //Client.tossField();
 
 		/*
 		 * Answer 2 : Partially Solved. Gathered data completely for the year 2017,
 		 * gathered data partially for years 2008, 2011 and 2016
 		 */
-		//Client.yearwiseTeamData();
+		Client.yearwiseTeamData();
 	}
 
 	// Method for Answer 1
