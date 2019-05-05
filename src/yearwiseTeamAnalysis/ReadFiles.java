@@ -1,5 +1,10 @@
 package yearwiseTeamAnalysis;
 
+/*
+List total number of fours, sixes, total score with respect to team and year.    
+
+Output Expected:     YEAR TEAM_NAME FOURS_COUNT SIXES_COUNT TOTAL_SCORE */
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -21,8 +26,10 @@ public class ReadFiles {
 		 * File objects for files. Passed path of the file as Argument. Reset the path
 		 * if FileNotFound Exception occurs
 		 */
-		File file_deliveries = new File("C:\\Users\\NipunGupta\\eclipse-workspace\\Coding Problem IPL\\files\\deliveries.csv");
-		File file_matches = new File("C:\\Users\\NipunGupta\\eclipse-workspace\\Coding Problem IPL\\files\\matches.csv");
+		File file_deliveries = new File(
+				"C:\\Users\\NipunGupta\\eclipse-workspace\\Coding Problem IPL\\files\\deliveries.csv");
+		File file_matches = new File(
+				"C:\\Users\\NipunGupta\\eclipse-workspace\\Coding Problem IPL\\files\\matches.csv");
 
 		// Buffered Reader objects for respective files
 		BufferedReader deliveries_reader = new BufferedReader(new FileReader(file_deliveries));
@@ -34,7 +41,7 @@ public class ReadFiles {
 		// Reading the first line of matches.csv
 		String line = matches_reader.readLine();
 
-		// String array to store the componets of each record of the file
+		// String array to store the components of each record of the file
 		String[] s_filerecords;
 
 		// HashMap object to store match id and year
@@ -49,13 +56,13 @@ public class ReadFiles {
 			try {
 				s_filerecords = p.split(line);
 
-				//System.out.println(s_filerecords[0] + "\t" + s_filerecords[1]);
-				
+				// System.out.println(s_filerecords[0] + "\t" + s_filerecords[1]);
+
 				// Inserting match id and year
 				mid_year.put(s_filerecords[0], s_filerecords[1]);
 
-				//System.out.println(mid_year);
-				
+				// System.out.println(mid_year);
+
 				// Inserting match id and batting team
 				mid_team1.put(s_filerecords[0], s_filerecords[4]);
 
@@ -63,8 +70,8 @@ public class ReadFiles {
 			}
 
 		}
-		
-		//System.out.println(mid_year.size());
+
+		// System.out.println(mid_year.size());
 
 		// Collecting all the years
 		Collection<String> years_set = mid_year.values();
@@ -75,15 +82,14 @@ public class ReadFiles {
 
 		// Storing the years in the array
 		for (String s : years_set) {
-			if(!years.contains(s))
-			{
+			if (!years.contains(s)) {
 				years.add(s);
 			}
 
 		}
 
 		years_set = null;
-		
+
 		// Sorting the array Arrays.sort(years);
 		Collections.sort(years);
 
@@ -220,23 +226,20 @@ public class ReadFiles {
 		team = null;
 		line = null;
 
-		
-		/*System.out.println(teams);
-		System.out.println(years.size());
-		System.out.println();*/
-		
-		
+		/*
+		 * System.out.println(teams); System.out.println(years.size());
+		 * System.out.println();
+		 */
+
 		objects.add(teams);
 		objects.add(id_teamfours);
 		objects.add(id_teamsix);
 		objects.add(id_teamscore);
 		objects.add(years);
 		objects.add(mid_year);
-		
-		System.out.println(id_teamfours);
-		
-		
-		
+
+		// System.out.println(mid_year.size());
+
 		deliveries_reader.close();
 		matches_reader.close();
 
