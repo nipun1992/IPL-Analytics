@@ -240,11 +240,29 @@ public class BestEconomyBowlers {
 
 	}
 
-	public static void yearbowlerStats(HashMap<String, String> mid_year, HashMap<String, HashMap> mid_bowler) {
+	public HashMap<String, ArrayList> yearbowlerStats(HashMap<String, String> mid_year,
+			HashMap<String, HashMap> mid_bowler, String year) {
 
-		for (int i = 0; i < mid_bowler.size(); i++) {
+		ArrayList<String> players = new ArrayList<String>();
 
+		
+		
+		HashMap<String, ArrayList> bowlers_stats = new HashMap<String, ArrayList>();
+
+		int count = 0;
+		// for (int i = 0; i < mid_year.size(); i++) {
+		while (count < mid_year.size()) {
+			if ((mid_year.get(count + 1 + "")).equals(year)) {
+
+				
+				
+				bowlers_stats.putAll(mid_bowler.get(count + 1 + ""));
+
+			}
+			count++;
 		}
+
+		return bowlers_stats;
 
 	}
 

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import economy.BestEconomyBowlers;
+import threads.YearWiseBowlerStats;
 import tossWinFiled.Toss;
 import yearwiseTeamAnalysis.ReadFiles;
 import yearwiseTeamAnalysis.WriteData;
@@ -20,7 +21,7 @@ public class Client {
 		/*
 		 * Answer 1 : Gathered data for year 2017 and 2016
 		 */
-		 Client.tossField();
+		 //Client.tossField();
 
 		/*
 		 * Answer 2 : Partially Solved. Gathered data completely for the year 2017,
@@ -31,8 +32,10 @@ public class Client {
 		/*
 		 * Answer 3 :
 		 */
-		//Client.bestEconomy();
+		Client.bestEconomy();
 
+		Thread.yield();
+		
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");
 	}
@@ -61,7 +64,19 @@ public class Client {
 		BufferedReader[] br = BestEconomyBowlers.reader();
 
 		HashMap<String, String> mid_year = BestEconomyBowlers.read(br);
+		
+		System.out.println((BestEconomyBowlers.bowlerEconomy(br, mid_year)).get("498"));
+		
+		BestEconomyBowlers beb = new BestEconomyBowlers();
+		
+		YearWiseBowlerStats t2008 = new YearWiseBowlerStats("2008");
+		t2008.bestbowlers = beb;
+		t2008.mid_year = mid_year;
+		t2008.mid_bowler = (BestEconomyBowlers.bowlerEconomy(br, mid_year));
 
+		t2008.start();
+		
+		
 	}
 
 }
