@@ -10,6 +10,9 @@ import java.util.regex.Pattern;
 
 public class BestEconomyBowlers {
 
+	// Creating an ArrayList to store names of players
+	public static ArrayList<String> bowlers;
+
 	// Method to get BufferedReaders for each file
 	public static BufferedReader[] reader() throws FileNotFoundException {
 
@@ -119,6 +122,8 @@ public class BestEconomyBowlers {
 		ball_no_const = ball_no;
 		bowler_const = bowler;
 
+		bowlers = new ArrayList<String>();
+
 		// While loop will until the reader completes reading the file
 		while (line != null) {
 
@@ -143,7 +148,8 @@ public class BestEconomyBowlers {
 					}
 				} else {
 
-					// If the bowler considered the latest has already been account in the current
+					// If the bowler considered the latest has already been accounted for the
+					// current
 					// year
 					if (bowler_runsBalls.containsKey(bowler_const)) {
 
@@ -160,6 +166,10 @@ public class BestEconomyBowlers {
 					// Inserting the bowler name and ArrayList into the HashMap
 					bowler_runsBalls.put(bowler_const, runs_balls);
 
+					if (!bowlers.contains(bowler_const)) {
+						bowlers.add(bowler_const);
+					}
+
 					// Resetting the balls and runs to 0
 					runs = 0;
 					balls = 0;
@@ -175,6 +185,8 @@ public class BestEconomyBowlers {
 				}
 			} else {
 
+				// If bowler_runsBalls HashMap already consists of the bowler i.e. the bowler
+				// has already been considered
 				if (bowler_runsBalls.containsKey(bowler_const)) {
 
 					runs = runs + Integer.parseInt(((bowler_runsBalls.get(bowler_const)).get(0)).toString());
@@ -188,6 +200,10 @@ public class BestEconomyBowlers {
 				runs_balls.add(balls);
 
 				bowler_runsBalls.put(bowler_const, runs_balls);
+
+				if (!bowlers.contains(bowler_const)) {
+					bowlers.add(bowler_const);
+				}
 
 				mid_bowler.put(mid_const, bowler_runsBalls);
 
@@ -226,6 +242,10 @@ public class BestEconomyBowlers {
 
 				bowler_runsBalls.put(bowler_const, runs_balls);
 
+				if (!bowlers.contains(bowler_const)) {
+					bowlers.add(bowler_const);
+				}
+
 				mid_bowler.put(mid_const, bowler_runsBalls);
 
 				break;
@@ -241,26 +261,83 @@ public class BestEconomyBowlers {
 	}
 
 	public HashMap<String, ArrayList> yearbowlerStats(HashMap<String, String> mid_year,
-			HashMap<String, HashMap> mid_bowler, String year) {
+			HashMap<String, HashMap> mid_bowler, String year, ArrayList<String> bowlers) {
 
+		System.out.println(bowlers.size());
+
+		// Creating ArrayList to store players that have been considered
 		ArrayList<String> players = new ArrayList<String>();
 
-		
-		
+		// Creating HashMap to store bowler names and their statistics
 		HashMap<String, ArrayList> bowlers_stats = new HashMap<String, ArrayList>();
 
+		// Creating ArrayList to store runs and balls
+		ArrayList<Integer> runs_balls = new ArrayList<Integer>();
+
+		//
+		ArrayList<Integer> new_runs_balls = new ArrayList<Integer>();
+
 		int count = 0;
-		// for (int i = 0; i < mid_year.size(); i++) {
+
+		int runs;
+		int balls;
+
 		while (count < mid_year.size()) {
 			if ((mid_year.get(count + 1 + "")).equals(year)) {
 
-				
-				
-				bowlers_stats.putAll(mid_bowler.get(count + 1 + ""));
+				//System.out.println("Match id : " + (count + 1) + ", " + year);
+
+				for (int i = 0; i < bowlers.size(); i++) {
+
+					runs = 0;
+					balls = 0;
+
+					try {
+						if ((mid_bowler.get(count + 1 + "")).containsKey(bowlers.get(i + 1))) {
+
+							System.out.println((mid_bowler.get(count + 1 + "")));
+							
+							System.out.println(bowlers.get(i + 1));
+
+							if (!players.contains(bowlers.get(i + 1))) {
+								players.add(bowlers.get(i + 1));
+								bowlers_stats.put(bowlers.get(i + 1),
+										((ArrayList) ((mid_bowler.get(count + 1 + "")).get(bowlers.get(i + 1)))));
+							} else {
+								runs_balls = bowlers_stats.get(bowlers.get(i + 1));
+								runs = runs_balls.get(0);
+								balls = runs_balls.get(1);
+								new_runs_balls = (ArrayList) (mid_bowler.get(count + 1 + "")).get(bowlers.get(i + 1));
+
+								runs = runs + new_runs_balls.get(0);
+								balls = balls + new_runs_balls.get(1);
+
+								runs_balls.remove(0);
+								runs_balls.remove(1);
+								runs_balls.add(runs);
+								runs_balls.add(balls);
+
+								bowlers_stats.put(bowlers.get(i + 1), runs_balls);
+
+								runs = 0;
+								balls = 0;
+							}
+						}
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+
+				}
 
 			}
 			count++;
 		}
+
+		System.out.println(players.size());
+
+		System.out.println(bowlers_stats.get("B Lee"));
+		System.out.println(bowlers_stats.get("TG Southee"));
+		System.out.println(bowlers_stats.get("S Tyagi"));
 
 		return bowlers_stats;
 
