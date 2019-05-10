@@ -23,9 +23,10 @@ public class YearWiseBowlerStats extends Thread {
 	public ArrayList<String> bowlers;
 
 	// Constructor
-	public YearWiseBowlerStats(String year) {
+	public YearWiseBowlerStats(String year, BestEconomyBowlers bestbowlers) {
 		super();
 		this.year = year;
+		this.bestbowlers = bestbowlers;
 	}
 
 	@Override
@@ -33,13 +34,9 @@ public class YearWiseBowlerStats extends Thread {
 		// TODO Auto-generated method stub
 		super.run();
 
-		bestbowlers.yearbowlerStats(mid_year, mid_bowler, year, bowlers);
+		HashMap<String, ArrayList> bowlers_stats = bestbowlers.yearbowlerStats(mid_year, mid_bowler, year, bowlers);
 
-		// System.out.println(Thread.currentThread().getName());
-
-		// System.out.println((bestbowlers.yearbowlerStats(mid_year, mid_bowler, year,
-		// bowlers)).size());
-		// System.out.println(year + "\t" + (bestbowlers.yearbowlerStats(mid_year,
-		// mid_bowler, year, bowlers)));
+		System.out.println(Thread.currentThread().getName() + " " + bowlers_stats);
+		
 	}
 }

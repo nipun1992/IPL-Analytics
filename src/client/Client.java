@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 import economy.BestEconomyBowlers;
 import threads.YearWiseBowlerStats;
@@ -61,27 +62,58 @@ public class Client {
 	// Method for Answer 3
 	public static void bestEconomy() throws IOException {
 
+		// Array of BuferedReader objects
 		BufferedReader[] br = BestEconomyBowlers.reader();
 
+		// HashMap object to store match id and corresponding year
 		HashMap<String, String> mid_year = BestEconomyBowlers.read(br);
 
-		// System.out.println((BestEconomyBowlers.bowlerEconomy(br,
-		// mid_year)).get("498"));
+		// Creating a Scanner class object to accept input
+		Scanner scan = new Scanner(System.in);
 
-		BestEconomyBowlers beb = new BestEconomyBowlers();
+		System.out.println("Enter the number of ipl seasons");
 
-		YearWiseBowlerStats t08 = new YearWiseBowlerStats("2008");
-		t08.bestbowlers = beb;
-		t08.mid_year = mid_year;
-		t08.mid_bowler = (BestEconomyBowlers.bowlerEconomy(br, mid_year));
-		t08.bowlers = BestEconomyBowlers.bowlers;
+		// int variable to store number of ipl seasons to consider
+		int seasons = scan.nextInt();
 
-		t08.start();
+		// Array of YearWiseBowlerStats objects
+		YearWiseBowlerStats[] threads_array = new YearWiseBowlerStats[seasons];
 
-		/*
-		 * try { t08.join(); } catch (InterruptedException e) {
-		 * System.out.println("Interrupted Exception"); }
-		 */
+		// Declaring YearWiseBowlerStats variable
+		YearWiseBowlerStats t;
+
+		// Loop to accept year of ipl season
+		for (int i = 0; i < seasons; i++) {
+
+			// Instantiating BestEconomyBowlers class
+			BestEconomyBowlers beb = new BestEconomyBowlers();
+
+			System.out.println("Enter the year");
+			String year = scan.next();
+
+			// Instantiating thread for the year entered and assinging respective values to
+			// its instance variables
+			t = new YearWiseBowlerStats(year, beb);
+			t.setName("thread-" + year);
+			t.bestbowlers = beb;
+			t.mid_year = mid_year;
+			t.mid_bowler = (BestEconomyBowlers.bowlerEconomy(br, mid_year));
+			t.bowlers = BestEconomyBowlers.bowlers;
+
+			// Inserting thread object in the array
+			threads_array[i] = t;
+
+		}
+
+		System.out.println();
+		System.out.println(Data );
+		
+		// Loop to start the threads inside array
+		for (int i = 0; i < threads_array.length; i++) {
+			threads_array[i].start();
+
+		}
+
 	}
 
 }
