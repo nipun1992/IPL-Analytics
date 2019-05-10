@@ -36,7 +36,9 @@ public class YearWiseBowlerStats extends Thread {
 
 		HashMap<String, ArrayList> bowlers_stats = bestbowlers.yearbowlerStats(mid_year, mid_bowler, year, bowlers);
 
-		System.out.println(Thread.currentThread().getName() + " " + bowlers_stats);
+		HashMap<String, Double> bowler_economy = bestbowlers.computeEconomy(bowlers_stats, bowlers);
+		
+		System.out.println(year + " " + bowler_economy);
 		
 	}
 }

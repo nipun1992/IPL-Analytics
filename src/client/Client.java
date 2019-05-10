@@ -106,13 +106,15 @@ public class Client {
 		}
 
 		System.out.println();
-		System.out.println(Data );
-		
+		System.out.println();
+
 		// Loop to start the threads inside array
 		for (int i = 0; i < threads_array.length; i++) {
 			threads_array[i].start();
 
 		}
+
+		scan.close();
 
 	}
 

@@ -147,8 +147,7 @@ public class BestEconomyBowlers {
 				} else {
 
 					// If the bowler considered the latest has already been accounted for the
-					// current
-					// year
+					// current year
 					if (bowler_runsBalls.containsKey(bowler_const)) {
 
 						runs = runs + Integer.parseInt(((bowler_runsBalls.get(bowler_const)).get(0)).toString());
@@ -334,6 +333,32 @@ public class BestEconomyBowlers {
 
 		return bowlers_stats;
 
+	}
+
+	public HashMap<String, Double> computeEconomy(HashMap<String, ArrayList> bowlers_stats, ArrayList<String> bowlers) {
+
+		// Creating HashMap to store bowler name and his economy for the ipl season
+		HashMap<String, Double> bowler_economy = new HashMap<String, Double>();
+
+		// double variables to store total runs conceded and total balls bowled
+		double total_runs, total_balls;
+
+		// double variable to find economy of the bowler
+		double economy;
+
+		for (String bowler : bowlers) {
+
+			if (bowlers_stats.containsKey(bowler)) {
+				total_runs = (Integer) (bowlers_stats.get(bowler)).get(0);
+				total_balls = (Integer) (bowlers_stats.get(bowler)).get(1);
+				economy = (total_runs / total_balls) * 6;
+
+				bowler_economy.put(bowler, economy);
+			}
+
+		}
+
+		return bowler_economy;
 	}
 
 }
