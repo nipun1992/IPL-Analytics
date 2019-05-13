@@ -23,10 +23,9 @@ public class Client {
 		 */
 		 Client.tossField();
 
-		/*
-		 * Answer 2 : In Progress. Able to gather data for a particular year Creating
-		 * thread to gather data for multiple years
-		 */
+		
+		 //Answer 2 : In progress
+		 
 		// TeamStats.yearwiseTeamData();
 
 		/*
