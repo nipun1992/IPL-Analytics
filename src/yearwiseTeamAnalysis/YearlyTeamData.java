@@ -129,6 +129,10 @@ public class YearlyTeamData {
 
 						tm.add(team);
 
+						runs = 0;
+						fours = 0;
+						six = 0;
+
 						runs = Integer.parseInt(s_filerecords[15]);
 
 						if (s_filerecords[13].equals("4")) {
@@ -145,17 +149,17 @@ public class YearlyTeamData {
 
 					} else {
 
-						if (!s_filerecords[15].equals("0")) {
+						if (!(s_filerecords[15].equals("0"))) {
 							runs = team_score.get(team) + Integer.parseInt(s_filerecords[15]);
 							team_score.put(team, runs);
-						}
 
-						if (s_filerecords[13].equals("4")) {
-							fours = team_fours.get(team) + 1;
-							team_fours.put(team, fours);
-						} else if (s_filerecords[13].equals("6")) {
-							six = team_six.get(team) + 1;
-							team_six.put(team, six);
+							if (s_filerecords[13].equals("4")) {
+								fours = team_fours.get(team) + 1;
+								team_fours.put(team, fours);
+							} else if (s_filerecords[13].equals("6")) {
+								six = team_six.get(team) + 1;
+								team_six.put(team, six);
+							}
 						}
 
 					}

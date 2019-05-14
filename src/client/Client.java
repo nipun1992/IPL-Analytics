@@ -21,17 +21,16 @@ public class Client {
 		/*
 		 * Answer 1 : Gathered data for year 2017 and 2016
 		 */
-		 Client.tossField();
+		// Client.tossField();
 
-		
-		 //Answer 2 : In progress
-		 
-		// TeamStats.yearwiseTeamData();
+		// Answer 2 : In progress
+
+		TeamStats.yearwiseTeamData();
 
 		/*
 		 * Answer 3 : Gathered economy for all bowlers in each year
 		 */
-		//BestEconomyYearly.bestEconomy();
+		// BestEconomyYearly.bestEconomy();
 
 		/*
 		 * long endTime = System.nanoTime();
