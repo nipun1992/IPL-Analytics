@@ -19,8 +19,8 @@ public class YearlyTeamData {
 	// Declaring HashMap of match ids and their corresponding year
 	public static HashMap<String, String> mid_year;
 
-	public static File file_deliveries, file_matches;
 	// public static File file_matches;
+	public static File file_deliveries, file_matches;
 
 	// Pattern object for the files
 	public static Pattern p = Pattern.compile(",");
@@ -108,8 +108,6 @@ public class YearlyTeamData {
 
 		// Creating HashMaps to store names and runs
 		team_score = new HashMap<String, Integer>();
-
-		// System.out.println(year);
 
 		while (line != null) {
 

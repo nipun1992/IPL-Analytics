@@ -1,12 +1,14 @@
-package tossWinFiled;
+package tossWinField;
 
 /*
-Top 4 teams which elected to field first after winning toss in the year 2016 and 2017.  
+Top 4 teams which elected to field first after winning toss in the year 2016 and 2017. 
+ 
 
 Output Expected: YEAR TEAM COUNT */
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,26 +17,29 @@ import java.util.regex.Pattern;
 
 public class Toss {
 
-	public static void print() throws IOException {
+	static BufferedReader reader_matches;
 
-		// Fetching the username of the user account
-		String username = System.getProperty("user.name");
+	// public static File file_matches;
+	public static File file_deliveries, file_matches;
+
+	// Method to get BufferedReaders for each file
+	public static void reader() throws FileNotFoundException {
 
 		/*
-		 * Creating File object for matches.csv file. Pass the path of the file as
-		 * argument
+		 * File objects for files. Passed path of the file as Argument. Reset the path
+		 * if FileNotFound Exception occurs
 		 */
-
-		// Passed path of the file as Argument. reset the path if FileNotFound Exception
-		// occurs
-		File file_matches = new File(
-				"C:\\Users\\" + username + "\\eclipse-workspace\\Coding Problem IPL\\files\\matches.csv");
+		file_matches = new File("C:\\Users\\NipunGupta\\eclipse-workspace\\Coding Problem IPL\\files\\matches.csv");
 
 		// Buffered Reader objects for respective files
-		BufferedReader matches_reader;
+		reader_matches = new BufferedReader(new FileReader(file_matches));
+
+	}
+
+	public static void result() throws IOException {
 
 		// Pattern object for the files
-		Pattern p = Pattern.compile(",");
+		Pattern pattern = Pattern.compile(",");
 
 		String line, tm;
 
@@ -53,40 +58,37 @@ public class Toss {
 
 		String yr, yr1;
 
-		int ipl_editions = 2;
-
 		// ArrayList object to store toss winning teams for a year
 		ArrayList<String> teams = new ArrayList<String>();
 
 		// ArrayList object to store years that have been calculated with
 		ArrayList<String> yrs = new ArrayList<String>();
 
-		matches_reader = new BufferedReader(new FileReader(file_matches));
-		line = matches_reader.readLine();
-		line = matches_reader.readLine();
-		s_filerecords = p.split(line);
+		line = reader_matches.readLine();
+		line = reader_matches.readLine();
+		s_filerecords = pattern.split(line);
 		yr = s_filerecords[1];
 		tm = s_filerecords[6];
 
 		yr1 = yr;
 
 		try {
-			outer: while (year_team_toss.size() < 2) {
+			while (year_team_toss.size() < 2) {
 
 				if (teams.size() > 0 || year_team_toss.size() > 0) {
 
-					matches_reader = new BufferedReader(new FileReader(file_matches));
-					line = matches_reader.readLine();
-					line = matches_reader.readLine();
-					s_filerecords = p.split(line);
+					reader_matches = new BufferedReader(new FileReader(file_matches));
+					line = reader_matches.readLine();
+					line = reader_matches.readLine();
+					s_filerecords = pattern.split(line);
 					yr1 = s_filerecords[1];
 					tm = s_filerecords[6];
 				}
 
 				while (yrs.contains(yr1)) {
 
-					line = matches_reader.readLine();
-					s_filerecords = p.split(line);
+					line = reader_matches.readLine();
+					s_filerecords = pattern.split(line);
 					yr1 = s_filerecords[1];
 					tm = s_filerecords[6];
 
@@ -104,9 +106,9 @@ public class Toss {
 
 					while (teams.contains(tm)) {
 
-						line = matches_reader.readLine();
+						line = reader_matches.readLine();
 
-						s_filerecords = p.split(line);
+						s_filerecords = pattern.split(line);
 
 						yr1 = s_filerecords[1];
 
@@ -143,9 +145,9 @@ public class Toss {
 							} else {
 								if (team_toss.size() < 8) {
 
-									line = matches_reader.readLine();
+									line = reader_matches.readLine();
 
-									s_filerecords = p.split(line);
+									s_filerecords = pattern.split(line);
 
 									yr = s_filerecords[1];
 									continue inner;
@@ -169,9 +171,9 @@ public class Toss {
 							else if (year_team_toss.size() > 0) {
 								if (team_toss.size() < 8) {
 
-									line = matches_reader.readLine();
+									line = reader_matches.readLine();
 
-									s_filerecords = p.split(line);
+									s_filerecords = pattern.split(line);
 
 									yr = s_filerecords[1];
 									continue inner;
@@ -190,10 +192,10 @@ public class Toss {
 
 					}
 
-					line = matches_reader.readLine();
+					line = reader_matches.readLine();
 
 					if (line != null) {
-						s_filerecords = p.split(line);
+						s_filerecords = pattern.split(line);
 						yr = s_filerecords[1];
 					}
 				}
@@ -244,9 +246,9 @@ public class Toss {
 
 		yrs = null;
 
-		p = null;
+		pattern = null;
 
-		matches_reader.close();
+		reader_matches.close();
 
 	}
 
