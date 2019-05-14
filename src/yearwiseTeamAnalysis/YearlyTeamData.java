@@ -19,15 +19,15 @@ public class YearlyTeamData {
 	// Declaring HashMap of match ids and their corresponding year
 	public static HashMap<String, String> mid_year;
 
-	public static File file_deliveries;
-	public static File file_matches;
+	public static File file_deliveries, file_matches;
+	// public static File file_matches;
 
 	// Pattern object for the files
 	public static Pattern p = Pattern.compile(",");
 
-	public HashMap<String, Integer> team_score;
-	public HashMap<String, Integer> team_six;
-	public HashMap<String, Integer> team_fours;
+	public HashMap<String, Integer> team_score, team_six, team_fours;
+	// public HashMap<String, Integer> team_six;
+	// public HashMap<String, Integer> team_fours;
 
 	public ArrayList<String> tm;
 
@@ -83,12 +83,12 @@ public class YearlyTeamData {
 
 	public void files(String year) throws IOException {
 
-		br[1] = new BufferedReader(new FileReader(file_deliveries));
+		BufferedReader br_temp = new BufferedReader(new FileReader(file_deliveries));
 
-		String line = br[1].readLine();
+		String line = br_temp.readLine();
 
 		try {
-			line = br[1].readLine();
+			line = br_temp.readLine();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -96,11 +96,7 @@ public class YearlyTeamData {
 
 		int fours = 0, six = 0, runs = 0;
 
-		String s_filerecords[];
-
-		// s_filerecords = p.split(line);
-
-		String mid, team;
+		String mid, team, s_filerecords[];
 
 		tm = new ArrayList<String>();
 
@@ -169,13 +165,13 @@ public class YearlyTeamData {
 
 			}
 
-			line = br[1].readLine();
+			line = br_temp.readLine();
 
 		}
 
 	}
 
-	public synchronized void result(String year) {
+	public void result(String year) {
 
 		for (int i = 0; i < tm.size(); i++) {
 			System.out.println(year + "\t" + tm.get(i) + "\t" + team_fours.get(tm.get(i)) + "\t"
