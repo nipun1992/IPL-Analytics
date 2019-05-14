@@ -21,7 +21,7 @@ public class Client {
 		 */
 		Client.tossField();
 
-		// Answer 2 : In progress
+		// Answer 2 : Completed
 
 		// TeamStats.yearwiseTeamData();
 
@@ -40,8 +40,10 @@ public class Client {
 	// Method for Answer 1
 	public static void tossField() throws IOException {
 
+		//Reading the files
 		Toss.reader();
 
+		//Computing the data and displaying output
 		Toss.result();
 
 	}
