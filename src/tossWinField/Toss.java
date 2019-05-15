@@ -22,6 +22,8 @@ public class Toss {
 	// public static File file_matches;
 	public static File file_deliveries, file_matches;
 
+	static HashMap<String, HashMap> year_team_toss;
+
 	// Method to get BufferedReaders for each file
 	public static void reader() throws FileNotFoundException {
 
@@ -51,7 +53,7 @@ public class Toss {
 
 		// HashMap object to store match year and toss counts corresponding to each team
 		// for that year
-		HashMap<String, HashMap> year_team_toss = new HashMap<String, HashMap>();
+		year_team_toss = new HashMap<String, HashMap>();
 
 		// HashMap object to store team and toss counts for a year
 		HashMap<String, Integer> team_toss = new HashMap<String, Integer>();
@@ -224,6 +226,37 @@ public class Toss {
 			System.out.println("Exception");
 		}
 
+		/*
+		 * System.out
+		 * .println("Count of teams which elected to field first after winning toss in the year 2017 and 2016. "
+		 * );
+		 * 
+		 * System.out.println(); System.out.println();
+		 * 
+		 * System.out.println("Year" + "\t" +
+		 * "Teams and corresponding toss counts for opting to field");
+		 * 
+		 * System.out.println();
+		 * 
+		 * System.out.println("2017 " + "\t" + year_team_toss.get("2017"));
+		 * 
+		 * System.out.println();
+		 * 
+		 * System.out.println("2016 " + "\t" + year_team_toss.get("2016"));
+		 * 
+		 * team_toss = null;
+		 * 
+		 * teams = null;
+		 * 
+		 * yrs = null;
+		 * 
+		 * pattern = null;
+		 * 
+		 * reader_matches.close();
+		 */
+	}
+
+	public static void print() {
 		System.out
 				.println("Count of teams which elected to field first after winning toss in the year 2017 and 2016. ");
 
@@ -240,15 +273,12 @@ public class Toss {
 
 		System.out.println("2016 " + "\t" + year_team_toss.get("2016"));
 
-		team_toss = null;
-
-		teams = null;
-
-		yrs = null;
-
-		pattern = null;
-
-		reader_matches.close();
+		try {
+			reader_matches.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

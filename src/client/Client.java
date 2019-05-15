@@ -40,11 +40,13 @@ public class Client {
 	// Method for Answer 1
 	public static void tossField() throws IOException {
 
-		//Reading the files
+		// Reading the files
 		Toss.reader();
 
-		//Computing the data and displaying output
+		// Computing the data and displaying output
 		Toss.result();
+
+		Toss.print();
 
 	}
 
