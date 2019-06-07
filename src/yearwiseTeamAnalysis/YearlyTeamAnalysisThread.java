@@ -14,11 +14,9 @@ public class YearlyTeamAnalysisThread extends Thread {
 	}
 
 	public void run() {
-		// TODO Auto-generated method stub
 
 		try {
 
-			// System.out.println(Thread.currentThread().getName());
 			td.files(year);
 
 			td.result(year);
@@ -27,10 +25,6 @@ public class YearlyTeamAnalysisThread extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		/*
-		 * td.result(year); td.write(year);
-		 */
 
 	}
 

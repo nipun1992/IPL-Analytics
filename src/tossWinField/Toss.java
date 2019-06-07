@@ -226,34 +226,6 @@ public class Toss {
 			System.out.println("Exception");
 		}
 
-		/*
-		 * System.out
-		 * .println("Count of teams which elected to field first after winning toss in the year 2017 and 2016. "
-		 * );
-		 * 
-		 * System.out.println(); System.out.println();
-		 * 
-		 * System.out.println("Year" + "\t" +
-		 * "Teams and corresponding toss counts for opting to field");
-		 * 
-		 * System.out.println();
-		 * 
-		 * System.out.println("2017 " + "\t" + year_team_toss.get("2017"));
-		 * 
-		 * System.out.println();
-		 * 
-		 * System.out.println("2016 " + "\t" + year_team_toss.get("2016"));
-		 * 
-		 * team_toss = null;
-		 * 
-		 * teams = null;
-		 * 
-		 * yrs = null;
-		 * 
-		 * pattern = null;
-		 * 
-		 * reader_matches.close();
-		 */
 	}
 
 	public static void print() {
