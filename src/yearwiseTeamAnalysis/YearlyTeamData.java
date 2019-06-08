@@ -167,7 +167,7 @@ public class YearlyTeamData {
 
 	}
 
-	public void result(String year) {
+	public synchronized void result(String year) {
 
 		for (int i = 0; i < tm.size(); i++) {
 			System.out.println(year + "\t" + tm.get(i) + "\t" + team_fours.get(tm.get(i)) + "\t"

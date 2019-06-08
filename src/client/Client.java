@@ -3,6 +3,7 @@ package client;
 import java.io.IOException;
 
 import tossWinField.Toss;
+import yearwiseTeamAnalysis.TeamStats;
 
 public class Client {
 
@@ -19,11 +20,11 @@ public class Client {
 		/*
 		 * Answer 1 : Gathered data for year 2017 and 2016
 		 */
-		Client.tossField();
+		// Client.tossField();
 
 		// Answer 2 : Completed
 
-		// TeamStats.yearwiseTeamData();
+		TeamStats.yearwiseTeamData();
 
 		/*
 		 * Answer 3 : Gathered economy for all bowlers in each year

@@ -17,20 +17,18 @@ public class TeamStatsRunnable implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 
-		synchronized (YearlyTeamData.class) {
+		try {
 
-			try {
+			// System.out.println("Runnable " + this.year + " being executed by " +
+			// Thread.currentThread().getName());
 
-				System.out.println("Runnable " + this.year + " being executed by " + Thread.currentThread().getName());
+			td.files(year);
 
-				td.files(year);
+			td.result(year);
 
-				td.result(year);
-
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
